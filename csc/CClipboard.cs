@@ -23,6 +23,7 @@ namespace csc
 		static public bool ToClipboardFromFile(string p)
 		{
 			bool ret = false;
+			p = CUtil.PathToWindowsType(p);
 			if (File.Exists(p)==true)
 			{
 				try

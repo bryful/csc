@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="CArgs.cs" />
     <Compile Include="CClipboard.cs" />
+    <Compile Include="CUtil.cs" />
     <Compile Include="CFolderDialog.cs" />
     <Compile Include="CWin.cs" />
     <Compile Include="LineEditDialog.cs">

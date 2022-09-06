@@ -29,26 +29,12 @@ namespace csc
 			}
 		}
 		// ***********************************************************************
-		private string chkPath(string s)
-		{
-			string ret = s;
-			if (s.Length < 3)
-			{
-				return s;
-			}
-			if((s[0]=='/')&&(s[2] == '/'))
-			{
-				s = s.Substring(1, 1).ToUpper() + ":" + s.Substring(2).Replace("/", "\\");
-			}
-			return ret;
-		}
-		// ***********************************************************************
 		public bool LoadFromFile(string p)
 		{
 			bool ret = false;
 			try
 			{
-				p = chkPath(p);
+				p = CUtil.PathToWindowsType(p);
 				if (File.Exists(p) == false)
 				{
 					textBox1.Text = p;
@@ -72,7 +58,8 @@ namespace csc
 		{
 			bool ret = false;
 			try 
-			{ 
+			{
+				p = CUtil.PathToWindowsType(p);
 				System.IO.File.WriteAllText(p, textBox1.Text, Encoding.GetEncoding("utf-8"));
 				m_FileName = p;
 				ret = true;

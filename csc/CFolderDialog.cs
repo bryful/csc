@@ -13,38 +13,10 @@ namespace csc
 {
 	public class CFolderDialog
 	{
-        // ***********************************************************************
-        static private string chkPath(string s)
-        {
-            string ret = s;
-            if (s.Length < 3)
-            {
-                return s;
-            }
-            if ((s[0] == '/') && (s[2] == '/'))
-            {
-                s = s.Substring(1, 1).ToUpper() + ":" + s.Substring(2).Replace("/", "\\");
-            }
-            return ret;
-        }
-        static private string ToJSPath(string p)
-		{
-            string ret = p;
-            if (ret.Length > 2)
-			{
-                if((ret[1]==':')&& (ret[2] == '\\'))
-				{
-                    ret = "/" + ret.Substring(0, 1).ToLower() + ret.Substring(2).Replace("\\", "/");
-
-				}
-
-			}
-            return ret;
-		}
         static public string ShowDialog(string p)
 		{
             string ret = "";
-            p = chkPath(p);
+            p = CUtil.PathToWindowsType(p);
             using (var ofd = new OpenFileDialog()
             {
                 InitialDirectory = p,
@@ -60,7 +32,7 @@ namespace csc
                     ret = Path.GetDirectoryName(ofd.FileName);
                     if(ret!="")
 					{
-                        ret = ToJSPath(ret);
+                        ret = CUtil.PathToJSType(ret);
                     }
                 }
             }

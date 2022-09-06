@@ -85,16 +85,16 @@ namespace csc
 					Console.Write(CMousePos.JSON());
 					break;
 				case CSCMODE.WindowMax:
-					CWin.WindowMax();
+					CWindows.WindowMax();
 					break;
 				case CSCMODE.WindowMin:
-					CWin.WindowMin();
+					CWindows.WindowMin();
 					break;
 				case CSCMODE.WindowNormal:
-					CWin.WindowNormal();
+					CWindows.WindowNormal();
 					break;
 				case CSCMODE.AEProcessList:
-					Console.Write(CWin.AEProcessList());
+					Console.Write(CWindows.AEProcessList());
 					break;
 				case CSCMODE.LineEdit:
 					CLineEditDialog dlg = new CLineEditDialog();

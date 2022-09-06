@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace csc
 {
-	class CWin
+	class CWindows
 	{
 		#region DllImport
 		// トップレベルウィンドウを列挙する

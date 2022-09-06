@@ -71,7 +71,7 @@
     <Compile Include="CClipboard.cs" />
     <Compile Include="CUtil.cs" />
     <Compile Include="CFolderDialog.cs" />
-    <Compile Include="CWin.cs" />
+    <Compile Include="CWindows.cs" />
     <Compile Include="CDropFolder.cs">
       <SubType>Form</SubType>
     </Compile>

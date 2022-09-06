@@ -72,19 +72,25 @@
     <Compile Include="CUtil.cs" />
     <Compile Include="CFolderDialog.cs" />
     <Compile Include="CWin.cs" />
-    <Compile Include="LineEditDialog.cs">
+    <Compile Include="CDropFolder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LineEditDialog.Designer.cs">
-      <DependentUpon>LineEditDialog.cs</DependentUpon>
+    <Compile Include="CDropFolder.Designer.cs">
+      <DependentUpon>CDropFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CLineEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CLineEditDialog.Designer.cs">
+      <DependentUpon>CLineEditDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextFileDialog.cs">
+    <Compile Include="CTextFileDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextFileDialog.Designer.cs">
-      <DependentUpon>TextFileDialog.cs</DependentUpon>
+    <Compile Include="CTextFileDialog.Designer.cs">
+      <DependentUpon>CTextFileDialog.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -94,11 +100,14 @@
     <Compile Include="CMousePos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LineEditDialog.resx">
-      <DependentUpon>LineEditDialog.cs</DependentUpon>
+    <EmbeddedResource Include="CDropFolder.resx">
+      <DependentUpon>CDropFolder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextFileDialog.resx">
-      <DependentUpon>TextFileDialog.cs</DependentUpon>
+    <EmbeddedResource Include="CLineEditDialog.resx">
+      <DependentUpon>CLineEditDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTextFileDialog.resx">
+      <DependentUpon>CTextFileDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

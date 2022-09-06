@@ -40,7 +40,7 @@ namespace csc
 			switch (opt.Mode)
 			{
 				case CSCMODE.FromClipboard:
-					Console.WriteLine(CClipboard.FromClipboard());
+					Console.Write(CClipboard.FromClipboard());
 					break;
 				case CSCMODE.ToClipboardFromFile:
 					string[] ps = opt.Plist();
@@ -64,11 +64,25 @@ namespace csc
 					}
 					Console.Write(CFolderDialog.ShowDialog(p));
 					break;
+				case CSCMODE.DropFolder:
+					CDropFolder df = new CDropFolder();
+					try
+					{
+						if( df.ShowDialog()==DialogResult.OK)
+						{
+							Console.Write(df.Folder);
+						}
+					}
+					finally
+					{
+						df.Dispose();
+					}
+					break;
 				case CSCMODE.MousePos:
-					Console.WriteLine(CMousePos.ToSource());
+					Console.Write(CMousePos.ToSource());
 					break;
 				case CSCMODE.MousePosJson:
-					Console.WriteLine(CMousePos.JSON());
+					Console.Write(CMousePos.JSON());
 					break;
 				case CSCMODE.WindowMax:
 					CWin.WindowMax();
@@ -80,10 +94,10 @@ namespace csc
 					CWin.WindowNormal();
 					break;
 				case CSCMODE.AEProcessList:
-					Console.WriteLine(CWin.AEProcessList());
+					Console.Write(CWin.AEProcessList());
 					break;
 				case CSCMODE.LineEdit:
-					LineEditDialog dlg = new LineEditDialog();
+					CLineEditDialog dlg = new CLineEditDialog();
 					try
 					{
 						string[] sa = opt.Plist();
@@ -104,11 +118,7 @@ namespace csc
 						}
 						if (dlg.ShowDialog() == DialogResult.OK)
 						{
-							Console.WriteLine(dlg.Line);
-						}
-						else
-						{
-							Console.WriteLine("");
+							Console.Write(dlg.Line);
 						}
 					}
 					finally
@@ -118,7 +128,7 @@ namespace csc
 
 						break;
 				case CSCMODE.TextFile:
-					TextFileDialog dlg2 = new TextFileDialog();
+					CTextFileDialog dlg2 = new CTextFileDialog();
 					try
 					{
 						string[] sa = opt.Plist();
@@ -132,11 +142,7 @@ namespace csc
 						}
 						if (dlg2.ShowDialog() == DialogResult.OK)
 						{
-							Console.WriteLine(dlg2.TextFile);
-						}
-						else
-						{
-							Console.WriteLine("");
+							Console.Write(dlg2.TextFile);
 						}
 					}
 					finally

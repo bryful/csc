@@ -1,7 +1,7 @@
 ﻿
 namespace csc
 {
-	partial class LineEditDialog
+	partial class CLineEditDialog
 	{
 		/// <summary>
 		/// Required designer variable.

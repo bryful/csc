@@ -11,7 +11,7 @@ using System.IO;
 
 namespace csc
 {
-	public partial class TextFileDialog : Form
+	public partial class CTextFileDialog : Form
 	{
 		private string m_FileName = "";
 		public string FileName { get { return m_FileName; } }
@@ -144,7 +144,7 @@ namespace csc
 			this.DialogResult = DialogResult.Cancel;
 		}
 		// ***********************************************************************
-		public TextFileDialog()
+		public CTextFileDialog()
 		{
 			InitializeComponent();
 		}

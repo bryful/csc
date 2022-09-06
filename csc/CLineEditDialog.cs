@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace csc
 {
-	public partial class LineEditDialog : Form
+	public partial class CLineEditDialog : Form
 	{
 		public string Line
 		{
@@ -31,7 +31,7 @@ namespace csc
 		}
 
 
-		public LineEditDialog()
+		public CLineEditDialog()
 		{
 			InitializeComponent();
 		}

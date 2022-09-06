@@ -1,7 +1,7 @@
 ﻿
 namespace csc
 {
-	partial class TextFileDialog
+	partial class CTextFileDialog
 	{
 		/// <summary>
 		/// Required designer variable.

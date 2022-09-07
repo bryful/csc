@@ -91,6 +91,9 @@ var defpath = "/e/TestFolder
 var result system.callSystem("csc -fd \"" + defpath + "\")";
 alert(result); //フォルダのパス文字列
 ```
+<hr>
+
+### <b>準備中</b>
 
 
 

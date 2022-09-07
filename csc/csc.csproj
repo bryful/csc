@@ -52,11 +52,32 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CArgs.cs" />
+    <Compile Include="CClac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CClac.Designer.cs">
+      <DependentUpon>CClac.cs</DependentUpon>
+    </Compile>
     <Compile Include="CClipboard.cs" />
     <Compile Include="CUtil.cs" />
     <Compile Include="CFolderDialog.cs" />
@@ -84,6 +111,8 @@
     <Compile Include="CLineEditDialog.Designer.cs">
       <DependentUpon>CLineEditDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="DynamicJson.cs" />
+    <Compile Include="JsonPref.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CTextFileDialog.cs">
@@ -95,11 +124,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMousePos.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CClac.resx">
+      <DependentUpon>CClac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CDropFolder.resx">
       <DependentUpon>CDropFolder.cs</DependentUpon>
     </EmbeddedResource>

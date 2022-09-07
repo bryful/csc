@@ -69,9 +69,11 @@ namespace csc
 			this.Name = "CDropFolder";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "DropFolder";
 			this.TopMost = true;
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CDropFolder_FormClosed);
+			this.Load += new System.EventHandler(this.CDropFolder_Load);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.CDropFolder_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CDropFolder_DragEnter);
 			this.ResumeLayout(false);

@@ -16,10 +16,10 @@ namespace csc
         static public string ShowDialog(string p)
 		{
             string ret = "";
-            p = CUtil.PathToWindowsType(p);
+            string p2 = CUtil.PathToWindowsType(p);
             using (var ofd = new OpenFileDialog()
             {
-                InitialDirectory = p,
+                InitialDirectory = p2,
                 FileName = "Folder Selection",
                 Filter = "Folder|.",
                 ValidateNames = false,

@@ -76,7 +76,7 @@ namespace csc
 			this.label1.TabIndex = 3;
 			this.label1.Text = "label1";
 			// 
-			// LineEditDialog
+			// CLineEditDialog
 			// 
 			this.AcceptButton = this.btnOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -94,12 +94,14 @@ namespace csc
 			this.MaximumSize = new System.Drawing.Size(5000, 150);
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(150, 150);
-			this.Name = "LineEditDialog";
+			this.Name = "CLineEditDialog";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "EditDialog";
 			this.TopMost = true;
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CLineEditDialog_FormClosed);
+			this.Load += new System.EventHandler(this.CLineEditDialog_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

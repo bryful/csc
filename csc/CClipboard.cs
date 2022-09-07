@@ -11,6 +11,10 @@ namespace csc
 {
 	public class CClipboard
 	{
+		/// <summary>
+		/// クリップボードのテキストを返す。
+		/// </summary>
+		/// <returns></returns>
 		static public string FromClipboard()
 		{
 			string ret = "";
@@ -20,21 +24,26 @@ namespace csc
 			}
 			return ret;
 		}
-		static public bool ToClipboardFromFile(string p)
+		/// <summary>
+		/// 指定したテキストファイルをクリップボードへ
+		/// </summary>
+		/// <param name="p">FileName</param>
+		/// <returns>成功したらFileName。失敗したらEmpty</returns>
+		static public string ToClipboardFromFile(string p)
 		{
-			bool ret = false;
-			p = CUtil.PathToWindowsType(p);
-			if (File.Exists(p)==true)
+			string ret = "";
+			string p2 = CUtil.PathToWindowsType(p);
+			if (File.Exists(p2)==true)
 			{
 				try
 				{
-					string str = File.ReadAllText(p, Encoding.GetEncoding("utf-8"));
+					string str = File.ReadAllText(p2, Encoding.GetEncoding("utf-8"));
 					Clipboard.SetText(str);
-					ret = true;
+					ret = p;
 				}
 				catch
 				{
-					ret = false;
+					ret = "";
 				}
 			}
 			return ret;

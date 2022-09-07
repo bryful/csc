@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using BRY;
 
 namespace csc
 {
@@ -71,7 +72,52 @@ namespace csc
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
+			m_Folder = "";
 			Application.Exit();
+		}
+
+		private void CDropFolder_Load(object sender, EventArgs e)
+		{
+			//設定ファイルの読み込み
+			JsonPref pref = new JsonPref("csc_DropFolder");
+			Console.WriteLine(pref.FilePath);
+			bool bb = false;
+			if (pref.Load())
+			{
+				bool ok = false;
+				Rectangle rct = pref.GetRect("Rect", out ok);
+				if (ok)
+				{
+					foreach (Screen s in Screen.AllScreens)
+					{
+						Rectangle r = s.Bounds;
+						if (JsonPref.IsInRect(r,rct))
+						{
+							bb = true;
+							break;
+						}
+					}
+					if (bb)
+					{
+						this.SetBounds(rct.Left, rct.Top, rct.Width, rct.Height);
+					}
+				}
+			}
+			if(bb==false)
+			{
+				Rectangle r = Screen.PrimaryScreen.Bounds;
+				Point pp = new Point((r.Width - this.Width) / 2, (r.Height - this.Height) / 2);
+				this.Location = pp;
+
+			}
+		}
+
+		private void CDropFolder_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			//設定ファイルの保存
+			JsonPref pref = new JsonPref("csc_DropFolder");
+			pref.SetRect("Rect", this.Bounds);
+			pref.Save();
 		}
 	}
 }

@@ -48,8 +48,9 @@ namespace csc
 					{
 						for(int i=0; i<ps.Length;i++)
 						{
-							if (CClipboard.ToClipboardFromFile(ps[i])==true)
+							if (CClipboard.ToClipboardFromFile(ps[i])== ps[i])
 							{
+								Console.Write(ps[i]);
 								break;
 							}
 						}
@@ -86,12 +87,15 @@ namespace csc
 					break;
 				case CSCMODE.WindowMax:
 					CWindows.WindowMax();
+					Console.Write("WinodwMax");
 					break;
 				case CSCMODE.WindowMin:
 					CWindows.WindowMin();
+					Console.Write("WinodwMin");
 					break;
 				case CSCMODE.WindowNormal:
 					CWindows.WindowNormal();
+					Console.Write("WinodwNormal");
 					break;
 				case CSCMODE.AEProcessList:
 					Console.Write(CWindows.AEProcessList());
@@ -152,7 +156,20 @@ namespace csc
 
 					break;
 
-
+				/*case CSCMODE.Calc:
+					CClac cc = new CClac();
+					try
+					{
+						if (cc.ShowDialog()==DialogResult.OK)
+						{
+							Console.Write("OK");
+						}
+					}
+					finally
+					{
+						cc.Dispose();
+					}
+					break;*/
 				default:
 					Usage(opt);
 					break;

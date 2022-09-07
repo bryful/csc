@@ -67,7 +67,7 @@ namespace csc
 			new Param("WindowNormal","wn","AEのウィンドウを通常化"),
 			new Param("AEProcessList","aps","起動しているAEのプロセス情報。配列のtoSource形式"),
 			new Param("LineEdit","le","1行のテキスト編集"),
-			new Param("TextFile","tf","テキストファイル編集"),
+			new Param("TextFile","tf","テキストファイル編集")
 		};
 		// ********************************************************************
 		private string SP(string s,int mx)

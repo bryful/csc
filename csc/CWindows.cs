@@ -153,7 +153,27 @@ namespace csc
 			ret = "[" + ret + "]";
 			return ret;
 		}
-
+		// ***************************************************************************************************
+		static string GetOsType()
+		{
+			const string Path = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion";
+			var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(Path, false);
+			return (string)key.GetValue("ProductName", "", Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames);
+		}
+		static public string PCInfo()
+		{
+			string ret = "";
+			ret += "({";
+			ret += "OSName:\"" + GetOsType() + "\"";
+			ret += ",";
+			ret += "OSVersion:\"" + Environment.OSVersion.ToString() + "\"";
+			ret += ",";
+			ret += "PCName:\"" + Environment.MachineName + "\"";
+			ret += ",";
+			ret += "UserName:\"" + Environment.UserName + "\"";
+			ret += "})";
+			return ret;
+		}
 
 
 		// **********************************************************************************************************

@@ -11,4 +11,10 @@
   csc -AEProcessList       or -aps     	// 起動しているAEのプロセス情報。配列のtoSource形式
   csc -LineEdit            or -le      	// 1行のテキスト編集
   csc -TextFile            or -tf      	// テキストファイル編集
+  csc -PCInfo              or -pi      	// PC情報
+  csc -Alert               or -at      	// アラート表示
+
+
+
+
 

@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace csc
 {
+	// ********************************************************************************************
 	class Program
 	{
 		//**********************************************************************************
@@ -170,6 +172,39 @@ namespace csc
 						cc.Dispose();
 					}
 					break;*/
+				case CSCMODE.PCInfo:
+					Console.Write(CWindows.PCInfo());
+					break;
+				case CSCMODE.Alert:
+					CAlert ca = new CAlert();
+					try
+					{
+						string[] sa = opt.Plist();
+						if (sa.Length > 0)
+						{
+							if (ca.LoadFromFile(sa[0])==false)
+							{
+								string ss = "";
+								foreach(string sss in sa)
+								{
+									if (ss != "") ss += "<br>";
+									ss += sss;
+								}
+								ca.SetHtml(ss);
+								ca.ToCenter();
+							}
+							if (ca.ShowDialog() == DialogResult.OK)
+							{
+							}
+						}
+
+					}
+					finally
+					{
+						ca.Dispose();
+					}
+
+					break;
 				default:
 					Usage(opt);
 					break;

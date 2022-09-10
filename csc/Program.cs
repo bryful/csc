@@ -158,20 +158,28 @@ namespace csc
 
 					break;
 
-				/*case CSCMODE.Calc:
-					CClac cc = new CClac();
+				case CSCMODE.Calc:
+
+					CCalc cc = new CCalc();
 					try
 					{
+						string[] sa = opt.Plist();
+						if(sa.Length>0)
+						{
+							cc.ValueStr = sa[0];
+						}
+
 						if (cc.ShowDialog()==DialogResult.OK)
 						{
-							Console.Write("OK");
+
+							Console.Write(cc.ValueStr);
 						}
 					}
 					finally
 					{
 						cc.Dispose();
 					}
-					break;*/
+					break;
 				case CSCMODE.PCInfo:
 					Console.Write(CWindows.PCInfo());
 					break;

@@ -75,6 +75,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -111,11 +112,11 @@
       <DependentUpon>CAlert.cs</DependentUpon>
     </Compile>
     <Compile Include="CArgs.cs" />
-    <Compile Include="CClac.cs">
+    <Compile Include="CCalc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CClac.Designer.cs">
-      <DependentUpon>CClac.cs</DependentUpon>
+    <Compile Include="CCalc.designer.cs">
+      <DependentUpon>CCalc.cs</DependentUpon>
     </Compile>
     <Compile Include="CClipboard.cs" />
     <Compile Include="CUtil.cs" />
@@ -155,8 +156,8 @@
     <EmbeddedResource Include="CAlert.resx">
       <DependentUpon>CAlert.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CClac.resx">
-      <DependentUpon>CClac.cs</DependentUpon>
+    <EmbeddedResource Include="CCalc.resx">
+      <DependentUpon>CCalc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDropFolder.resx">
       <DependentUpon>CDropFolder.cs</DependentUpon>

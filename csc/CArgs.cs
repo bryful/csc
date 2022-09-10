@@ -25,6 +25,7 @@ namespace csc
 		TextFile,
 		PCInfo,
 		Alert,
+		Calc,
 		Count
 	}
 	public class Param
@@ -71,7 +72,8 @@ namespace csc
 			new Param("LineEdit","le","1行のテキスト編集"),
 			new Param("TextFile","tf","テキストファイル編集"),
 			new Param("PCInfo","pi","PC情報"),
-			new Param("Alert","at","アラート表示")
+			new Param("Alert","at","アラート表示"),
+			new Param("Calc","cc","計算機")
 		};
 		// ********************************************************************
 		private string SP(string s,int mx)

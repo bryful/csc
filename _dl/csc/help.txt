@@ -13,8 +13,5 @@
   csc -TextFile            or -tf      	// テキストファイル編集
   csc -PCInfo              or -pi      	// PC情報
   csc -Alert               or -at      	// アラート表示
-
-
-
-
+  csc -Calc                or -cc      	// 計算機
 

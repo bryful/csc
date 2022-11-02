@@ -195,7 +195,7 @@ namespace csc
 		{
 			//設定ファイルの読み込み
 			JsonPref pref = new JsonPref("csc_TextFileDialog");
-			Console.WriteLine(pref.FilePath);
+			//Console.WriteLine(pref.FilePath);
 			bool bb = false;
 			if (pref.Load())
 			{

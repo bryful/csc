@@ -14,6 +14,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,6 +90,18 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C3E2A6A0F84F77EA3BA3F75CB7AA4A057AB9DA8F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>csc_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -82,6 +110,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -118,6 +147,16 @@
       <DependentUpon>CClac.cs</DependentUpon>
     </Compile>
     <Compile Include="CClipboard.cs" />
+    <Compile Include="CSelectFolder\CSelectFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSelectFolder\CSelectFolder.Designer.cs">
+      <DependentUpon>CSelectFolder.cs</DependentUpon>
+    </Compile>
+    <None Include="csc_TemporaryKey.pfx" />
+    <None Include="CSelectFolder\Sample\T_ListBox.cs">
+      <SubType>Component</SubType>
+    </None>
     <Compile Include="CUtil.cs" />
     <Compile Include="CFolderDialog.cs" />
     <Compile Include="CWindows.cs" />
@@ -133,8 +172,30 @@
     <Compile Include="CLineEditDialog.Designer.cs">
       <DependentUpon>CLineEditDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSelectFolder\DriveListBox.cs" />
+    <Compile Include="CSelectFolder\DriveListBox.Designer.cs">
+      <DependentUpon>DriveListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSelectFolder\DirectoryListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSelectFolder\DirectoryListBox.Designer.cs">
+      <DependentUpon>DirectoryListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSelectFolder\DirFileListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSelectFolder\DirFileListBox.designer.cs">
+      <DependentUpon>DirFileListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="DynamicJson.cs" />
     <Compile Include="JsonPref.cs" />
+    <Compile Include="CSelectFolder\ListBoxEX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSelectFolder\ListBoxEX.Designer.cs">
+      <DependentUpon>ListBoxEX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CTextFileDialog.cs">
@@ -143,6 +204,8 @@
     <Compile Include="CTextFileDialog.Designer.cs">
       <DependentUpon>CTextFileDialog.cs</DependentUpon>
     </Compile>
+    <None Include="CSelectFolder\Sample\T_DriveList.cs" />
+    <None Include="CSelectFolder\Sample\T_FList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -164,9 +227,24 @@
     <EmbeddedResource Include="CLineEditDialog.resx">
       <DependentUpon>CLineEditDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CSelectFolder\CSelectFolder.resx">
+      <DependentUpon>CSelectFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CTextFileDialog.resx">
       <DependentUpon>CTextFileDialog.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 および x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

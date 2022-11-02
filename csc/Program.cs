@@ -65,7 +65,7 @@ namespace csc
 					{
 						p = sa2[0];
 					}
-					Console.Write(CFolderDialog.ShowDialog(p));
+					Console.Write(CFolderDialog.ShowSelectFolderDialog(p));
 					break;
 				case CSCMODE.DropFolder:
 					CDropFolder df = new CDropFolder();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms.VisualStyles;
 
 namespace csc
 {
@@ -38,6 +39,28 @@ namespace csc
             }
             return ret;
         }
+		static public string ShowSelectFolderDialog(string p)
+		{
+			string ret = "";
+			string p2 = CUtil.PathToWindowsType(p);
+			using (var ofd = new CSelectFolder()
+			{
+				FileName = p2
+			})
+			{
+				if (ofd.ShowDialog() == DialogResult.OK)
+				{
+					ret = ofd.FileName;
+					if (ret != "")
+					{
+						ret = CUtil.PathToJSType(ret);
+					}
+				}
+			}
+			return ret;
+		}
+	}
 
-    }
+
+
 }

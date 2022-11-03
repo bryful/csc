@@ -1,7 +1,7 @@
 [csc.exe] stsrem.callSystem command
   csc -FromClipboard       or -clip    	// クリップボードのテキストを出力。
   csc -ToClipboardFromFile or -clipFile	// テキストファイル(UTF-8)をクリップボードへ
-  csc -FolderDialg         or -fd      	// フォルダ選択ダイアログ
+  csc -FolderDialog         or -fd      // フォルダ選択ダイアログ
   csc -DropFolder          or -dd      	// D&Dでフォルダを選択
   csc -MousePos            or -mp      	// マウスカーソルの座標を出力。toSource形式 ({x:100,y:100})
   csc -MousePosJson        or -mpj     	// マウスカーソルの座標を出力。JSON形式 {"x":100,"y":100}

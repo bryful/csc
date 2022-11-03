@@ -58,6 +58,20 @@ namespace csc
 						}
 					}
 					break;
+				case CSCMODE.ToClipboard:
+					string c = "";
+					for (int i = 0; i < args.Length; i++)
+					{
+						if ((args[i][0] == '-') || (args[i][0] == '/'))
+						{
+							string a = args[i].Substring(1).ToLower();
+							if ((a == "toclipboard") || (a == "toclip")) continue;
+						}
+						if (c != "") c = c + "";
+						c += args[i];
+					}
+					Clipboard.SetText(c);
+					break;
 				case CSCMODE.FolderDialog:
 					string p = "";
 					string[] sa2 = opt.Plist();

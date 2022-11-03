@@ -126,7 +126,6 @@ namespace csc
 				}
 
 			}
-			MessageBox.Show("a");
 		}
 		protected override void OnLoad(EventArgs e)
 		{

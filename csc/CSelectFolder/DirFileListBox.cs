@@ -70,12 +70,10 @@ namespace csc
 			}
 		}
 
-		private DInfo [] m_Items = new DInfo[0];
-		public void Clear()
+		public new void Clear()
 		{
+			base.Clear();
 			m_Current = null;
-			m_Items = new DInfo[0];
-			this.Items.Clear();
 			if (m_DirTextBox != null)
 			{
 				m_DirTextBox.Text = "";
@@ -83,7 +81,6 @@ namespace csc
 		}
 		public DirFileListBox()
 		{
-			this.Items.Clear();
 			InitializeComponent();
 			Listup();
 		}
@@ -100,34 +97,48 @@ namespace csc
 				Clear();
 				return;
 			}
-			m_Items = new DInfo[0];
-			this.Items.Clear();
+			base.Clear();
 			if (m_DirTextBox != null)
 			{
 				m_DirTextBox.Text = "";
 			}
 			List<DInfo> lst = new List<DInfo>();
-
-
-			IEnumerable<string> dirs = Directory.EnumerateDirectories(m_Current.FullName, "*", SearchOption.TopDirectoryOnly);
-			foreach (string s in dirs)
+			/*
+			try
 			{
-				if (s[0] == '.') continue;
-				DirectoryInfo di = new DirectoryInfo(s);
-				if ((di == null) || (di.Exists == false)) continue;
-				if ((di.Attributes & FileAttributes.Hidden) != 0) continue;
-				lst.Add(new DInfo(di));
+				IEnumerable<string> dirs = Directory.EnumerateDirectories(m_Current.FullName, "*", SearchOption.TopDirectoryOnly);
+				foreach (string s in dirs)
+				{
+					if (s[0] == '.') continue;
+					DirectoryInfo di = new DirectoryInfo(s);
+					if ((di == null) || (di.Exists == false)) continue;
+					if ((di.Attributes & FileAttributes.Hidden) != 0) continue;
+					lst.Add(new DInfo(di));
+				}
+
 			}
-			IEnumerable<string> files = Directory.EnumerateFiles(m_Current.FullName, "*.aep", SearchOption.TopDirectoryOnly);
-			foreach (string s in files)
+			catch { }
+			*/
+			try
 			{
-				FileInfo fi = new FileInfo(s);
-				if ((fi == null) || (fi.Exists == false)) continue;
-				if ((fi.Attributes & FileAttributes.Hidden) != 0) continue;
-				lst.Add(new DInfo(fi));
+				IEnumerable<string> files = Directory.EnumerateFiles(m_Current.FullName, "*", SearchOption.TopDirectoryOnly);
+				foreach (string s in files)
+				{
+					FileInfo fi = new FileInfo(s);
+					if ((fi == null) || (fi.Exists == false)) continue;
+					if ((fi.Attributes & FileAttributes.Hidden) != 0) continue;
+					string e = Path.GetExtension(s).ToLower();
+					if((e==".json")|| (e == ".ardj") || (e == ".ard")|| (e == ".aep")|| (e == ".jpg") || (e == ".jpeg") || (e == ".tga") || (e == ".txt") || (e == ".psd") || (e == ".ai"))
+					{
+						lst.Add(new DInfo(fi));
+					}
+				}
 			}
+			catch { }
 			if (lst.Count > 0)
 			{
+				this.AddRange(lst);
+				/*
 				m_Items = lst.ToArray();
 				if (m_Items.Length > 0)
 				{
@@ -148,6 +159,7 @@ namespace csc
 					this.Items.Clear();
 					this.Items.AddRange(itms);
 				}
+				*/
 			}
 			if (IsEvent)
 			{
@@ -173,11 +185,11 @@ namespace csc
 		{
 			if ((SelectedIndex >= 0) && (SelectedIndex < this.Items.Count))
 			{
-				if(m_Items[SelectedIndex].DInfoType == DInfoType.Dir)
+				if(DInfoItems[SelectedIndex].DInfoType == DInfoType.Dir)
 				{
 					if(m_DirectoryListBox!=null)
 					{
-						m_DirectoryListBox.SetCurrentParent(new DirectoryInfo(m_Items[SelectedIndex].FullName));
+						m_DirectoryListBox.SetCurrentParent(new DirectoryInfo(DInfoItems[SelectedIndex].FullName));
 					}
 				}
 			}

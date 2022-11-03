@@ -61,7 +61,7 @@ namespace csc
 			}
 		}
 
-		private DInfo [] m_Items = new DInfo[0];
+		//private DInfo [] m_Items = new DInfo[0];
 
 
 		public DirectoryListBox()
@@ -72,7 +72,7 @@ namespace csc
 		protected override void InitLayout()
 		{
 			base.InitLayout();
-			this.Items.Clear();
+			base.Clear();
 			Listup();
 		}
 
@@ -81,12 +81,12 @@ namespace csc
 			if (di.Parent == null) return;
 			m_Current = di.Parent;
 			Listup(false);
-			if(m_Items.Length>0)
+			if(DInfoItems.Count>0)
 			{
 				string n = di.Name;
 				int cnt = 0;
 				int idx = -1;
-				foreach(DInfo d in m_Items)
+				foreach(DInfo d in DInfoItems)
 				{
 					if(d.Name==n)
 					{
@@ -110,8 +110,7 @@ namespace csc
 		}
 		private void Listup(bool IsEvent=true)
 		{
-			this.Items.Clear();
-			m_Items = new DInfo[0];
+			base.Clear();
 			SelectedIndex = -1;
 			if ((m_Current == null) || (m_Current.Exists == false))
 			{
@@ -122,19 +121,25 @@ namespace csc
 			DirectoryInfo prt = m_Current.Parent;
 			if(prt!=null)
 			{
-				DInfo d = new DInfo(prt);
+				DInfo d = new DInfo(prt,true);
 				d.Caption = "..\\";
 				lst.Add(d);
 			}
-			IEnumerable<string> dirs = Directory.EnumerateDirectories(m_Current.FullName, "*", SearchOption.TopDirectoryOnly);
-			foreach (string s in dirs)
+			try
 			{
-				if (s[0] == '.') continue;
-				DirectoryInfo di = new DirectoryInfo(s);
-				if ((di == null) || (di.Exists == false)) continue;
-				if ((di.Attributes & FileAttributes.Hidden) != 0) continue;
-				lst.Add(new DInfo(di));
+				IEnumerable<string> dirs = Directory.EnumerateDirectories(m_Current.FullName, "*", SearchOption.TopDirectoryOnly);
+				foreach (string s in dirs)
+				{
+					if (s[0] == '.') continue;
+					DirectoryInfo di = new DirectoryInfo(s);
+					if ((di == null) || (di.Exists == false)) continue;
+					if ((di.Attributes & FileAttributes.Hidden) != 0) continue;
+					lst.Add(new DInfo(di));
+				}
 			}
+			catch { }
+			AddRange(lst);
+			/*
 			if (lst.Count > 0)
 			{
 				m_Items = lst.ToArray();
@@ -150,13 +155,14 @@ namespace csc
 					this.Items.AddRange(itms);
 				}
 			}
+			*/
 			if (IsEvent)
 			{
 				if (m_DriveListBox != null)
 				{
 					if (m_DriveListBox.DirectoryName != m_Current.FullName)
 					{
-						m_DriveListBox.DirectoryName = m_Current.FullName;
+						m_DriveListBox.SetDirectoryName(m_Current.FullName);
 					}
 				}
 				if (m_DirFileListBox != null)
@@ -180,15 +186,15 @@ namespace csc
 		{
 			if ((SelectedIndex >= 0) && (SelectedIndex < this.Items.Count))
 			{
-				if(m_Items[SelectedIndex].DInfoType == DInfoType.Dir)
+				if(DInfoItems[SelectedIndex].DInfoType == DInfoType.Dir)
 				{
-					if (m_Items[SelectedIndex].Caption == "..\\")
+					if (DInfoItems[SelectedIndex].IsParetn)
 					{
 						SetCurrentParent(m_Current);
 					}
 					else
 					{
-						Current = new DirectoryInfo(m_Items[SelectedIndex].FullName);
+						Current = new DirectoryInfo(DInfoItems[SelectedIndex].FullName);
 					}
 				}
 			}
@@ -199,12 +205,12 @@ namespace csc
 		}
 		protected override void OnSelectedIndexChanged(EventArgs e)
 		{
-			bool b = ((SelectedIndex >= 0) && (SelectedIndex < m_Items.Length));
+			bool b = ((SelectedIndex >= 0) && (SelectedIndex < DInfoItems.Count));
 			if((b)&&(m_DirFileListBox!=null))
 			{
-				if (m_Items[SelectedIndex].Caption != "..\\")
+				if (DInfoItems[SelectedIndex].IsParetn ==false)
 				{
-					m_DirFileListBox.CurrentPath = m_Items[SelectedIndex].FullName;
+					m_DirFileListBox.CurrentPath = DInfoItems[SelectedIndex].FullName;
 				}
 			}
 			else
@@ -231,12 +237,12 @@ namespace csc
 				DirectoryInfo di = new DirectoryInfo(p);
 				Current = di;
 				string n = Path.GetFileName(e.Dir);
-				if(m_Items.Length>0)
+				if(DInfoItems.Count>0)
 				{
 					int idx = -1;
-					for(int i=0; i< m_Items.Length;i++)
+					for(int i=0; i< DInfoItems.Count;i++)
 					{
-						if (m_Items[i].Name==n)
+						if (DInfoItems[i].Name==n)
 						{
 							idx = i;
 							break;
@@ -303,6 +309,60 @@ namespace csc
 		{
 			get { return m_DirectryTextBox; }
 			set { m_DirectryTextBox = value; }
+		}
+		private Button m_DesktopBtn = null;
+		public Button DesktopBtn
+		{
+			get { return m_DesktopBtn; }
+			set
+			{
+				m_DesktopBtn = value;
+				if (m_DesktopBtn != null)
+				{
+					m_DesktopBtn.Click += M_DesktopBtn_Click;
+				}
+			}
+		}
+
+		private void M_DesktopBtn_Click(object sender, EventArgs e)
+		{
+			SetCurrentPath(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), false);
+		}
+		private Button m_DocBtn = null;
+		public Button DocBtn
+		{
+			get { return m_DocBtn; }
+			set
+			{
+				m_DocBtn = value;
+				if (m_DocBtn != null)
+				{
+					m_DocBtn.Click += M_DocBtn_Click;
+				}
+			}
+		}
+
+		private void M_DocBtn_Click(object sender, EventArgs e)
+		{
+			SetCurrentPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), false);
+		}
+		private Button m_UserBtn = null;
+		public Button UserBtn
+		{
+			get { return m_UserBtn; }
+			set
+			{
+				m_UserBtn = value;
+				if (m_UserBtn != null)
+				{
+					m_UserBtn.Click += M_UserBtn_Click;
+				}
+			}
+		}
+
+		private void M_UserBtn_Click(object sender, EventArgs e)
+		{
+			SetCurrentPath(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),false);
 		}
 	}
 }

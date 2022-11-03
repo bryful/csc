@@ -100,7 +100,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.JScript" />
@@ -191,9 +191,7 @@
     </Compile>
     <Compile Include="DynamicJson.cs" />
     <Compile Include="JsonPref.cs" />
-    <Compile Include="CSelectFolder\ListBoxEX.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="CSelectFolder\ListBoxEX.cs" />
     <Compile Include="CSelectFolder\ListBoxEX.Designer.cs">
       <DependentUpon>ListBoxEX.cs</DependentUpon>
     </Compile>

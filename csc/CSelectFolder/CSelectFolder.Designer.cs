@@ -40,6 +40,9 @@
 			this.btnRoot = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.btnDeskTop = new System.Windows.Forms.Button();
+			this.btnDoc = new System.Windows.Forms.Button();
+			this.btnDownload = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -59,8 +62,9 @@
 			this.tnTargetDir.Location = new System.Drawing.Point(12, 442);
 			this.tnTargetDir.Name = "tnTargetDir";
 			this.tnTargetDir.ReadOnly = true;
-			this.tnTargetDir.Size = new System.Drawing.Size(775, 16);
+			this.tnTargetDir.Size = new System.Drawing.Size(756, 16);
 			this.tnTargetDir.TabIndex = 2;
+			this.tnTargetDir.Text = "C:\\Bin";
 			this.tnTargetDir.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// btnOK
@@ -88,33 +92,17 @@
 			// dirFileListBox1
 			// 
 			this.dirFileListBox1.Current = ((System.IO.DirectoryInfo)(resources.GetObject("dirFileListBox1.Current")));
-			this.dirFileListBox1.CurrentPath = "C:\\Users\\did-furuhashi\\source\\repos\\csc";
+			this.dirFileListBox1.CurrentPath = "C:\\Bin";
 			this.dirFileListBox1.DirectoryListBox = this.directoryListBox1;
 			this.dirFileListBox1.DirTextBox = this.tnTargetDir;
 			this.dirFileListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dirFileListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.dirFileListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 12F);
+			this.dirFileListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.dirFileListBox1.FormattingEnabled = true;
 			this.dirFileListBox1.ItemHeight = 20;
-			this.dirFileListBox1.Items.AddRange(new object[] {
-            "<DIR> AlertTest",
-            "<DIR> csc",
-            "<DIR> packages",
-            "<DIR> _dl",
-            "<DIR> AlertTest",
-            "<DIR> csc",
-            "<DIR> packages",
-            "<DIR> _dl",
-            "<DIR> AlertTest",
-            "<DIR> csc",
-            "<DIR> packages",
-            "<DIR> _dl",
-            "<DIR> AlertTest",
-            "<DIR> csc",
-            "<DIR> packages",
-            "<DIR> _dl"});
 			this.dirFileListBox1.Location = new System.Drawing.Point(0, 0);
 			this.dirFileListBox1.Name = "dirFileListBox1";
+			this.dirFileListBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
 			this.dirFileListBox1.Size = new System.Drawing.Size(325, 392);
 			this.dirFileListBox1.TabIndex = 15;
 			// 
@@ -122,41 +110,39 @@
 			// 
 			this.directoryListBox1.Current = ((System.IO.DirectoryInfo)(resources.GetObject("directoryListBox1.Current")));
 			this.directoryListBox1.CurrentPath = "C:\\";
+			this.directoryListBox1.DesktopBtn = this.btnDeskTop;
 			this.directoryListBox1.DirectryTextBox = this.tbDir;
 			this.directoryListBox1.DirFileListBox = this.dirFileListBox1;
+			this.directoryListBox1.DocBtn = this.btnDoc;
 			this.directoryListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.directoryListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.directoryListBox1.DriveListBox = this.driveListBox1;
-			this.directoryListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 12F);
+			this.directoryListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.directoryListBox1.FormattingEnabled = true;
 			this.directoryListBox1.ItemHeight = 20;
 			this.directoryListBox1.Items.AddRange(new object[] {
             "AITEMP",
-            "Autodesk",
             "Bin",
-            "BluetoothExchangeFolder",
-            "cert",
-            "ESD",
-            "inetpub",
-            "MoTemp",
-            "opencv",
+            "eSupport",
+            "lbr",
+            "MediaServer",
+            "OpenToonz stuff",
             "PerfLogs",
             "Program Files",
             "Program Files (x86)",
-            "Quarantine",
-            "SWSETUP",
-            "SymCache",
-            "Temp",
-            "tmp",
+            "Qt",
+            "Themes",
             "Users",
-            "Windows",
-            "Windows10Upgrade"});
+            "VNTApp",
+            "Windows"});
 			this.directoryListBox1.Location = new System.Drawing.Point(0, 0);
 			this.directoryListBox1.Name = "directoryListBox1";
 			this.directoryListBox1.ParentBtn = this.btnParent;
 			this.directoryListBox1.RootBtn = this.btnRoot;
+			this.directoryListBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
 			this.directoryListBox1.Size = new System.Drawing.Size(280, 392);
 			this.directoryListBox1.TabIndex = 16;
+			this.directoryListBox1.UserBtn = this.btnDownload;
 			// 
 			// tbDir
 			// 
@@ -167,9 +153,10 @@
 			this.tbDir.Location = new System.Drawing.Point(12, 12);
 			this.tbDir.Name = "tbDir";
 			this.tbDir.ReadOnly = true;
-			this.tbDir.Size = new System.Drawing.Size(455, 16);
+			this.tbDir.Size = new System.Drawing.Size(440, 16);
 			this.tbDir.TabIndex = 20;
 			this.tbDir.Text = "C:\\";
+			this.tbDir.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// driveListBox1
 			// 
@@ -182,38 +169,25 @@
         "D:\\",
         "E:\\",
         "F:\\",
-        "K:\\",
-        "M:\\",
-        "N:\\",
-        "O:\\",
-        "P:\\",
-        "Q:\\",
-        "S:\\",
-        "T:\\",
-        "X:\\",
+        "G:\\",
+        "H:\\",
         "Y:\\",
         "Z:\\"};
-			this.driveListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.driveListBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.driveListBox1.FormattingEnabled = true;
 			this.driveListBox1.ItemHeight = 18;
 			this.driveListBox1.Items.AddRange(new object[] {
-            "C (Windows)",
-            "D (Recovery Image)",
-            "E (ボリューム)",
-            "F (HDCZ-UT)",
-            "K (DCst-Other)",
-            "M (DCst-SEED)",
-            "N (DCst-ZEP)",
-            "O (DCst-GOR_Public)",
-            "P (DCst-FLD)",
-            "Q (DCst-TAB)",
-            "S (DCst-SDS)",
-            "T (DCst-IKS)",
-            "X (DCst-USERS)",
-            "Y (DCst-BS_3D)",
-            "Z (DCst-Setting)"});
+            "C (OS)",
+            "D (SSD-D)",
+            "E (HDD4T01)",
+            "F (HDD4T-02)",
+            "G (500G)",
+            "H (HDD6T)",
+            "Y (sv02)",
+            "Z (sv01)"});
 			this.driveListBox1.Location = new System.Drawing.Point(0, 0);
 			this.driveListBox1.Name = "driveListBox1";
+			this.driveListBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
 			this.driveListBox1.Size = new System.Drawing.Size(150, 392);
 			this.driveListBox1.TabIndex = 11;
 			// 
@@ -277,6 +251,39 @@
 			this.splitContainer2.SplitterWidth = 10;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// btnDeskTop
+			// 
+			this.btnDeskTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnDeskTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeskTop.Location = new System.Drawing.Point(8, 483);
+			this.btnDeskTop.Name = "btnDeskTop";
+			this.btnDeskTop.Size = new System.Drawing.Size(96, 28);
+			this.btnDeskTop.TabIndex = 21;
+			this.btnDeskTop.Text = "To Desktop";
+			this.btnDeskTop.UseVisualStyleBackColor = true;
+			// 
+			// btnDoc
+			// 
+			this.btnDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDoc.Location = new System.Drawing.Point(110, 483);
+			this.btnDoc.Name = "btnDoc";
+			this.btnDoc.Size = new System.Drawing.Size(94, 28);
+			this.btnDoc.TabIndex = 22;
+			this.btnDoc.Text = "To Document";
+			this.btnDoc.UseVisualStyleBackColor = true;
+			// 
+			// btnDownload
+			// 
+			this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDownload.Location = new System.Drawing.Point(210, 483);
+			this.btnDownload.Name = "btnDownload";
+			this.btnDownload.Size = new System.Drawing.Size(94, 28);
+			this.btnDownload.TabIndex = 23;
+			this.btnDownload.Text = "To User";
+			this.btnDownload.UseVisualStyleBackColor = true;
+			// 
 			// CSelectFolder
 			// 
 			this.AcceptButton = this.btnOK;
@@ -284,6 +291,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(799, 541);
+			this.Controls.Add(this.btnDownload);
+			this.Controls.Add(this.btnDoc);
+			this.Controls.Add(this.btnDeskTop);
 			this.Controls.Add(this.tbDir);
 			this.Controls.Add(this.btnRoot);
 			this.Controls.Add(this.btnParent);
@@ -324,5 +334,8 @@
 		private System.Windows.Forms.Button btnParent;
 		private System.Windows.Forms.Button btnRoot;
 		private System.Windows.Forms.TextBox tbDir;
+		private System.Windows.Forms.Button btnDeskTop;
+		private System.Windows.Forms.Button btnDoc;
+		private System.Windows.Forms.Button btnDownload;
 	}
 }

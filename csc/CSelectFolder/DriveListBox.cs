@@ -12,97 +12,7 @@ using System.Windows.Forms;
 using System.Management;
 namespace csc
 {
-	public enum DInfoType
-	{
-		None,
-		Dir,
-		File
-	}
 
-	public class DInfo
-	{
-		private DInfoType m_Type = DInfoType.None;
-		public DInfoType DInfoType { get { return m_Type; } }
-		private bool m_IsHidden =false;
-		public bool IsHidden { get { return m_IsHidden; } }	
-		public string FullName { get; set; }
-		public string Caption = "";
-		public string Name 
-		{ 
-			get
-			{
-				if (Caption == "")
-				{
-					return Path.GetFileName(FullName);
-				}
-				else
-				{
-					return Caption;
-				}
-			}
-		}
-		public char DriveLetter { get; set; }
-		public string VolumeLabel { get; set; }
-		public void Chk()
-		{
-			if(FullName!="")
-			{
-				if (FullName[0]!=DriveLetter)
-				{
-					FullName = DriveLetter + ":\\";
-				}
-			}
-		}
-		public DInfo(DirectoryInfo d)
-		{
-			m_Type = DInfoType.Dir;
-			FullName = d.FullName;
-			DriveLetter = d.FullName[0];
-			try
-			{
-				VolumeLabel = (new DriveInfo(d.FullName)).VolumeLabel;
-			}
-			catch
-			{
-				VolumeLabel = "";
-			}
-			m_IsHidden = ((d.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden);
-		}
-		public DInfo(FileInfo f)
-		{
-			m_Type = DInfoType.File;
-			FullName = f.FullName;
-			DriveLetter = f.FullName[0];
-			try
-			{
-				VolumeLabel = (new DriveInfo(f.FullName)).VolumeLabel;
-			}
-			catch
-			{
-				VolumeLabel = "";
-			}
-			m_IsHidden = ((f.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden);
-		}
-		public bool Exists
-		{
-			get
-			{
-				switch(m_Type)
-				{
-					case DInfoType.File:
-						return File.Exists(FullName);
-					case DInfoType.Dir:
-						return Directory.Exists(FullName);
-					default:
-						return false;
-				}
-			}
-		}
-		public string Info
-		{
-			get { return DriveLetter + " (" + VolumeLabel + ")"; }
-		}
-	}
 	public class DirChangedArg : EventArgs
 	{
 		public string Dir;
@@ -113,17 +23,17 @@ namespace csc
 	}
 	public partial class DriveListBox : ListBoxEX
 	{
-		private DInfo[] m_drives = new DInfo[0];
+		//private DInfo[] m_drives = new DInfo[0];
 		public string[] Drives
 		{
 			get
 			{
-				string[] ret = new string[m_drives.Length];
-				if(m_drives.Length>0)
+				string[] ret = new string[DInfoItems.Count];
+				if(DInfoItems.Count > 0)
 				{
-					for(int i = 0; i < m_drives.Length; i++)
+					for(int i = 0; i < DInfoItems.Count; i++)
 					{
-						ret[i] = m_drives[i].FullName;
+						ret[i] = DInfoItems[i].FullName;
 					}
 				}
 				return ret;
@@ -137,15 +47,15 @@ namespace csc
 						DirectoryInfo d = new DirectoryInfo(value[i]);
 						if (d.Exists == false) return;
 						DInfo di = new DInfo(d);
-						for (int j = 0; j < m_drives.Length;j++)
+						for (int j = 0; j < DInfoItems.Count;j++)
 						{
-							if (m_drives[j].DriveLetter==di.DriveLetter)
+							if (DInfoItems[j].DriveLetter==di.DriveLetter)
 							{
-								m_drives[j].FullName =di.FullName;
+								DInfoItems[j].FullName =di.FullName;
 								break;
 							}
 						}
-						for (int j = 0; j < m_drives.Length; j++) m_drives[i].Chk();
+						for (int j = 0; j < DInfoItems.Count; j++) DInfoItems[i].Chk();
 					}
 
 				}
@@ -156,9 +66,9 @@ namespace csc
 			get 
 			{
 				int idx = SelectedIndex;
-				if((idx>=0)&&(idx<m_drives.Length))
+				if((idx>=0)&&(idx< DInfoItems.Count))
 				{
-					return m_drives[idx].FullName;
+					return DInfoItems[idx].FullName;
 				}
 				else
 				{
@@ -182,14 +92,15 @@ namespace csc
 			DirectoryInfo d = new DirectoryInfo(p);
 			if (d.Exists == false) return ret;
 			DInfo di = new DInfo(d);
-			if (m_drives.Length > 0)
+			if (DInfoItems.Count > 0)
 			{
-				for (int i = 0; i < m_drives.Length; i++)
+				for (int i = 0; i < DInfoItems.Count; i++)
 				{
-					if (m_drives[i].DriveLetter == di.DriveLetter)
+					if (DInfoItems[i].DriveLetter == di.DriveLetter)
 					{
 						ret = i;
-						m_drives[i] = di;
+						DInfoItems[i].FullName = di.FullName;
+						DInfoItems[i].Caption = di.Caption;
 						if (SelectedIndex != i)
 						{
 							m_IsSelectedEvent = false;
@@ -202,20 +113,15 @@ namespace csc
 			}
 			return ret;
 		}
-		public int Count
-		{
-			get { return m_drives.Length; }
-		}
 		public DriveListBox()
 		{
-		
 			InitializeComponent();
 		}
 		
 		protected override void InitLayout()
 		{
 			base.InitLayout();
-			this.Items.Clear();
+			base.Clear();
 			Listup();
 		}
 		
@@ -227,12 +133,15 @@ namespace csc
 			List<DInfo> dirs = new List<DInfo>();
 			foreach (string drive in drives)
 			{
-				DInfo di = new DInfo(new DirectoryInfo(drive));
+				DInfo di = new DInfo(new DirectoryInfo(drive), false, true);
 				if(di.Exists)
 				{
 					dirs.Add(di);
 				}
 			}
+			base.Clear();
+			AddRange(dirs, true);
+			/*
 			m_drives = dirs.ToArray();
 			string[] caps = new string[Count];
 			int idx = 0;
@@ -243,14 +152,15 @@ namespace csc
 			}
 			this.Items.Clear();
 			this.Items.AddRange(caps);	
-			if ((this.SelectedIndex < 0) && (m_drives.Length > 0)) this.SelectedIndex = 0;			
+			*/
+			if ((this.SelectedIndex < 0) && (DInfoItems.Count > 0)) this.SelectedIndex = 0;			
 		}
 		protected override void OnSelectedIndexChanged(EventArgs e)
 		{
 			if(m_IsSelectedEvent==false) return;
 			try
 			{
-				if ((SelectedIndex >= 0) && (SelectedIndex < m_drives.Length))
+				if ((SelectedIndex >= 0) && (SelectedIndex < DInfoItems.Count))
 				{
 
 					if (m_DirectoryListBox != null)

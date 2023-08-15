@@ -44,6 +44,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -165,7 +173,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:csc"
         "ProductCode" = "8:{AAD964CD-7C2F-4D08-BA71-6B084AD21F6A}"
-        "PackageCode" = "8:{C1FC9851-4C02-43FD-820C-DB62D31FD06A}"
+        "PackageCode" = "8:{E711BB14-66F5-4434-AE5E-D85F0DEED3D9}"
         "UpgradeCode" = "8:{8E49D967-F194-404C-A2AB-2F177BA27493}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -182,8 +190,8 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:callSystem command"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
-        "ARPIconIndex" = "3:0"
+        "ARPPRODUCTICON" = "8:_B2F0C2ED9B224D22953312F97433BCA2"
+        "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:1"

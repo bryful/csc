@@ -32,14 +32,14 @@ namespace csc
 
 		private void CDropFolder_DragEnter(object sender, DragEventArgs e)
 		{
-			if (e.Data ==null) return;
+			if (e.Data == null) return;
 			DragDropEffects d = DragDropEffects.None;
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
 				string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-				if(files.Length>0)
+				if (files.Length > 0)
 				{
-					for(var i=0; i<files.Length; i++)
+					for (var i = 0; i < files.Length; i++)
 					{
 						if (Directory.Exists(files[i]))
 						{
@@ -80,7 +80,7 @@ namespace csc
 						break;
 					}
 				}
-				if ((p != null)&&(p!=""))
+				if ((p != null) && (p != ""))
 				{
 					p = CUtil.PathToJSType(p);
 					m_Folder = p;

@@ -29,6 +29,7 @@ namespace csc
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAlert));
 			btnOK = new Button();
 			webBrowser1 = new WebBrowser();
 			SuspendLayout();
@@ -65,6 +66,7 @@ namespace csc
 			Controls.Add(webBrowser1);
 			Controls.Add(btnOK);
 			Font = new Font("MS UI Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			Margin = new Padding(4);
 			MaximizeBox = false;
 			MinimizeBox = false;

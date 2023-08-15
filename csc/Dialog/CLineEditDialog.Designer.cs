@@ -29,6 +29,7 @@ namespace csc
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CLineEditDialog));
 			textBox1 = new TextBox();
 			btnOK = new Button();
 			btnCancel = new Button();
@@ -89,6 +90,7 @@ namespace csc
 			Controls.Add(btnOK);
 			Controls.Add(textBox1);
 			Font = new Font("MS UI Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			Margin = new Padding(4);
 			MaximizeBox = false;
 			MaximumSize = new Size(5000, 150);
@@ -96,7 +98,6 @@ namespace csc
 			MinimumSize = new Size(150, 150);
 			Name = "CLineEditDialog";
 			ShowIcon = false;
-			ShowInTaskbar = false;
 			Text = "EditDialog";
 			TopMost = true;
 			FormClosed += CLineEditDialog_FormClosed;

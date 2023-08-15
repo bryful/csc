@@ -29,6 +29,7 @@ namespace csc
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDropFolder));
 			label1 = new Label();
 			btnClose = new Button();
 			SuspendLayout();
@@ -63,6 +64,7 @@ namespace csc
 			ClientSize = new Size(599, 318);
 			Controls.Add(btnClose);
 			Controls.Add(label1);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "CDropFolder";
 			ShowIcon = false;
 			ShowInTaskbar = false;

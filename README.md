@@ -1,5 +1,7 @@
 ﻿# csc.exe
 
+![app](./image/../img/Icon064.png)<br>
+
 After Effectsのスクリプトの<b>system.callSystem()</b>から呼び出すコマンドです。<br>
 <br>
 今までいっぱい作ってましたがいっぱいあると管理が面倒だったので、一つにまとめてしまおうと思い作ったものです。<br>
@@ -36,6 +38,9 @@ After Effectsのスクリプトの<b>system.callSystem()</b>から呼び出す�
 基本的に、第一引数が機能のセパレータで、その後に細かいパラメータが指定できます。
 
 ### <b>csc.exe setup</b>
+
+![setup](./img/setup.png)<br>
+
 インストラーを用意しましたので、それでインストールしてください。<br>
 デフォルトで以下にインストールされます。
 ```
@@ -87,8 +92,13 @@ system.callSystem(csc+ " -clipFile /c/test.txt");
 <hr>
 
 ### <b>csc -FolderDialg or -fd</b>
+
+![fd](./img/fd.png)<br>
+
 フォルダ選択ダイアログを表示します。
-引数にデフォルトのパスを指定できます。
+引数にデフォルトのパスを指定できます。<br>
+右のファイルリストはAfter Effectsに関係ありそうなファイルしか表示しません。<br>
+
 ```
 var defpath = "/e/TestFolder";
 var result = system.callSystem(csc + " -fd \"" + defpath + "\");
@@ -97,6 +107,9 @@ alert(result); //フォルダのパス文字列
 <hr>
 
 ### <b>csc -DropFolder or -dd</b>
+
+![dd](./img/dd.png)<br>
+
 ドラッグ＆ドロップでフォルダのパスを得るダイアログを表示します。
 ```
 var result = system.callSystem(csc + " -dd");
@@ -151,6 +164,9 @@ alert(result);
 <hr>
 
 ### <b>csc -LineEdit or -le</b>
+
+![le](./img/le.png)<br>
+
 1行テキストエディタダイアログが表示されます。
 文字入力用です。
 
@@ -161,6 +177,9 @@ alert(result);
 <hr>
 
 ### <b>csc -TextFile or -tf</b>
+
+![le](./img/tf.png)<br>
+
 テキストファイルを読み込んで編集します。引数入れなくても起動します。
 保存等はメニューで行います。<br>
 close&Outputで返り値にテキストを返します。
@@ -193,6 +212,9 @@ UserName:"XXXXX"
 
 ## <b>csc -Alert or -at</b>
 
+![le](./img/at.png)<br>
+
+
 alert表示です。<br>
 引数でhtmlファイルを渡せばそれを表示します。普通のテキストファイルでも構いません。
 引数がファイルでなかったらそのまま表示します。
@@ -205,6 +227,10 @@ system.callSystem(csc + " -at " + html);
 <hr>
 
 ## <b>csc -Calc or -cc</b>
+
+![le](./img/calc.png)<br>
+
+
 電卓を表示します。<br>
 
 ```
@@ -215,6 +241,10 @@ alert(result);
 <hr>
 
 ## <b>csc -JavaScript or -js</b>
+
+![le](./img/js.png)<br>
+
+
 Javascriptコンソールが出ます。
 上記の電卓をClearScriptで実装しなおしたので、おまけでつけてます。<br>
 使い道を作者も思いつきません。

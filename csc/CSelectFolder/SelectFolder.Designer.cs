@@ -28,19 +28,20 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectFolder));
 			driveListBox1 = new DriveListBox();
 			directoryListBox1 = new DirectoryListBox();
 			ToDeskTop = new Button();
 			tbDir = new TextBox();
 			dirFileListBox1 = new DirFileListBox();
 			tbTargetDir = new TextBox();
+			btnDoc = new Button();
 			btnParent = new Button();
 			btnRoot = new Button();
 			splitContainer1 = new SplitContainer();
 			splitContainer2 = new SplitContainer();
 			btnCancel = new Button();
 			btnOK = new Button();
-			btnDoc = new Button();
 			btnUser = new Button();
 			((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
 			splitContainer1.Panel1.SuspendLayout();
@@ -129,8 +130,7 @@
 			// 
 			dirFileListBox1.BackColor = Color.FromArgb(64, 64, 64);
 			dirFileListBox1.BorderStyle = BorderStyle.FixedSingle;
-			dirFileListBox1.Current = null;
-			dirFileListBox1.CurrentPath = "";
+			dirFileListBox1.CurrentPath = "C:\\Autodesk";
 			dirFileListBox1.DirectoryListBox = directoryListBox1;
 			dirFileListBox1.DirTextBox = tbTargetDir;
 			dirFileListBox1.Dock = DockStyle.Fill;
@@ -157,7 +157,20 @@
 			tbTargetDir.ReadOnly = true;
 			tbTargetDir.Size = new Size(641, 22);
 			tbTargetDir.TabIndex = 3;
+			tbTargetDir.Text = "C:\\Autodesk";
 			tbTargetDir.TextAlign = HorizontalAlignment.Right;
+			// 
+			// btnDoc
+			// 
+			btnDoc.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+			btnDoc.FlatStyle = FlatStyle.Flat;
+			btnDoc.ForeColor = Color.FromArgb(230, 230, 230);
+			btnDoc.Location = new Point(137, 408);
+			btnDoc.Name = "btnDoc";
+			btnDoc.Size = new Size(96, 25);
+			btnDoc.TabIndex = 5;
+			btnDoc.Text = "to Document";
+			btnDoc.UseVisualStyleBackColor = true;
 			// 
 			// btnParent
 			// 
@@ -243,18 +256,6 @@
 			btnOK.Text = "OK";
 			btnOK.UseVisualStyleBackColor = true;
 			// 
-			// btnDoc
-			// 
-			btnDoc.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			btnDoc.FlatStyle = FlatStyle.Flat;
-			btnDoc.ForeColor = Color.FromArgb(230, 230, 230);
-			btnDoc.Location = new Point(137, 408);
-			btnDoc.Name = "btnDoc";
-			btnDoc.Size = new Size(96, 25);
-			btnDoc.TabIndex = 5;
-			btnDoc.Text = "to Document";
-			btnDoc.UseVisualStyleBackColor = true;
-			// 
 			// btnUser
 			// 
 			btnUser.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -282,6 +283,7 @@
 			Controls.Add(ToDeskTop);
 			Controls.Add(tbTargetDir);
 			Controls.Add(tbDir);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			MinimumSize = new Size(600, 360);
 			Name = "SelectFolder";
 			Text = "";

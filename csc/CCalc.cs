@@ -11,7 +11,7 @@ using System.IO;
 
 using Microsoft.ClearScript;
 using Microsoft.ClearScript.V8;
-
+using System.Diagnostics;
 namespace csc
 {
 	public partial class CCalc : BaseForm
@@ -72,16 +72,17 @@ namespace csc
 			MakeMenu();
 			MakeConMenu();
 
-			foreach(Control c in this.Controls)
+			key10Pad1.Btn += (sender, e) =>
 			{
-				if (c is Button)
+
+				Key10Pad? kp = (Key10Pad?)sender;
+				if (kp != null)
 				{
-					c.GotFocus += (sender, e) =>
-					{
-						textBox1.Focus();
-					};
+					Debug.WriteLine("Padd" + e.Cmd);
+					SetKey(e.Cmd);
 				}
-			}
+
+			};
 		}
 		// ***************************************************************
 		private void MathMenu_Click(object? sender, EventArgs e)
@@ -220,39 +221,35 @@ namespace csc
 				UndoData.RemoveAt(UndoData.Count - 1);
 			}
 		}
-		private void btnEnt_Click(object sender, EventArgs e)
+		private void SetKey(string s)
 		{
-			CalcExec();
-		}
-
-		private void btnInsetStr_Click(object sender, EventArgs e)
-		{
-			Button btn = (Button)sender;
-			string s = btn.Text;
 			if (s == "&&") s = "&";
-			InsertStr(s);
+			if (s == "Sp") s = " ";
+			if (s == "CLR")
+			{
+				TextClear();
+			}
+			else if (s == "BS")
+			{
+				BackSpace();
+
+
+			}
+			else if (s == "Ent")
+			{
+				CalcExec();
+			}
+			else
+			{
+				InsertStr(s);
+			}
 
 		}
-
-		private void btnSpace_Click(object sender, EventArgs e)
-		{
-			InsertStr(" ");
-		}
-
 		private void MenuUndo_Click(object sender, EventArgs e)
 		{
 			Undo();
 		}
 
-		private void btnBS_Click(object sender, EventArgs e)
-		{
-			BackSpace();
-		}
-
-		private void btnSLR_Click(object sender, EventArgs e)
-		{
-			TextClear();
-		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e)
 		{

@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JSForm));
 			tbCode = new TextBox();
 			btnClose = new Button();
 			btnOutput = new Button();
@@ -183,6 +184,7 @@
 			Controls.Add(btnClose);
 			Controls.Add(tbCode);
 			Controls.Add(menuStrip1);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			MainMenuStrip = menuStrip1;
 			Name = "JSForm";
 			Text = "Javascript";

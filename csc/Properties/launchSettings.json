@@ -2,7 +2,7 @@
   "profiles": {
     "csc": {
       "commandName": "Project",
-      "commandLineArgs": "-pl"
+      "commandLineArgs": "-js"
     }
   }
 }

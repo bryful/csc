@@ -41,12 +41,13 @@ namespace csc
 			string p2 = CUtil.PathToWindowsType(p);
 			if (File.Exists(p2) == true)
 			{
-				try { 
+				try
+				{
 					PrefFile pf = new PrefFile(this, "csc_Alert");
 					pf.Load();
 					pf.GetBounds();
 					Object? v = null;
-					v = pf.JsonFile.ValueAuto("title",typeof(string).Name);
+					v = pf.JsonFile.ValueAuto("title", typeof(string).Name);
 					if (v != null) { this.Text = (string)v; }
 					v = pf.JsonFile.ValueAuto("html", typeof(string).Name);
 					if (v != null) { webBrowser1.DocumentText = (string)v; }
